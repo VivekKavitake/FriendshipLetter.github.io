@@ -1,0 +1,269 @@
+/* Basic styles for the body */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: radial-gradient(circle, #f0f0f0, #d8cfc4);
+  overflow: hidden;
+}
+
+/* Container for centering content */
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Added padding for smaller screens */
+}
+
+/* Styles for the input and button container */
+#input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s ease;
+  width: 100%;
+  max-width: 500px; /* Limit width on larger screens */
+}
+
+/* Hide and scale down the input container when letter is received */
+#input-container.shrink {
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Styles for the name input field */
+#name {
+  margin-bottom: 1em; /* Use em for consistency */
+  padding: 0.75em; /* Use em for consistency */
+  font-size: 1rem; /* Use rem for consistency */
+  width: 100%;
+  max-width: 300px;
+  border: 2px solid #a89a7a;
+  border-radius: 5px;
+  background-color: #fefef9;
+}
+
+/* Styles for the receive letter button */
+#receive-letter {
+  padding: 0.75em 1.5em; /* Use em for consistency */
+  font-size: 1rem; /* Use rem for consistency */
+  cursor: pointer;
+  border: none;
+  background-color: #a89a7a;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+#receive-letter:hover {
+  background-color: #8d7b4f;
+}
+
+/* Styles for the letter cover */
+#letter-cover {
+  height: 50vh; /* Use viewport height for responsiveness */
+  width: 80vw; /* Use viewport width for responsiveness */
+  max-height: 400px; /* Limit maximum height */
+  max-width: 600px; /* Limit maximum width */
+  background: linear-gradient(135deg, #fef0e0, #d2b493);
+  border: 5px solid #d2b493;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  border-radius: 15px;
+  transform: perspective(1200px) rotateX(0deg);
+}
+
+/* Styles for the letter details */
+.letter-details {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6d3f2a;
+  font-size: 0.9rem; /* Use rem for consistency */
+}
+
+.letter-details p {
+  margin: 0.5em 0; /* Use em for consistency */
+}
+
+/* Hide the letter cover */
+#letter-cover.hidden {
+  display: none;
+}
+
+/* Animate letter cover revealing effect */
+#letter-cover.reveal {
+  opacity: 0;
+  transform: perspective(1200px) rotateX(-90deg);
+}
+
+/* Styles for the heart seal on the letter cover */
+.heart-seal {
+  position: absolute;
+  width: 10vw; /* Use viewport width for responsiveness */
+  height: 10vw; /* Use viewport width for responsiveness */
+  max-width: 80px; /* Limit maximum size */
+  max-height: 80px; /* Limit maximum size */
+  background: radial-gradient(circle, #ff4b5c, #ff1a3c);
+  clip-path: polygon(50% 0%, 100% 35%, 75% 100%, 25% 100%, 0% 35%);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  top: 2%;
+  left: 2%;
+  transform: rotate(-15deg);
+}
+
+/* Styles for the letter */
+#letter {
+  height: 60vh; /* Use viewport height for responsiveness */
+  width: 80vw; /* Use viewport width for responsiveness */
+  max-height: 550px; /* Limit maximum height */
+  max-width: 650px; /* Limit maximum width */
+  background: linear-gradient(145deg, #fefbfb, #f1f1f1);
+  border: 2px solid #ddd;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em; /* Use em for consistency */
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  font-family: "Georgia", serif;
+  transform: translateY(120%) scale(0.95);
+}
+
+/* Show the letter with animation */
+#letter.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Styles for the letter content */
+#letter-content {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  font-family: "Times New Roman", Times, serif;
+  transform: translateY(20px);
+}
+
+/* Show the letter content */
+#letter-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* New CSS for celebration effects */
+.celebration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Styles for stars and hearts in celebration */
+.star,
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  animation: celebrate 1s ease-in-out infinite;
+  z-index: 1000;
+  transform-origin: center;
+}
+
+/* Styles for stars */
+.star {
+  background: radial-gradient(circle, #ffdd00, #ffbb00);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  box-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
+}
+
+/* Styles for hearts */
+.heart {
+  background: radial-gradient(circle, #ff4b5c, #ff1a3c);
+  clip-path: polygon(50% 0%, 100% 35%, 75% 100%, 25% 100%, 0% 35%);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Keyframes for celebration animation */
+@keyframes celebrate {
+  0% {
+    transform: scale(0.5) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) translateY(-200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive design for larger screens */
+@media (max-width: 768px) {
+  #letter-cover {
+    height: 40vh;
+    width: 70vw;
+    max-height: 300px;
+    max-width: 400px;
+    padding: 1em;
+  }
+
+  #letter {
+    height: 50vh;
+    width: 70vw;
+    max-height: 400px;
+    max-width: 500px;
+    padding: 1.5em;
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+  #letter-cover {
+    height: 35vh;
+    width: 80vw;
+    max-height: 250px;
+    max-width: 300px;
+    padding: 0.5em;
+  }
+
+  #letter {
+    height: 60vh;
+    width: 80vw;
+    max-height: 600px;
+    max-width: 650px;
+    padding: 1em;
+  }
+}
